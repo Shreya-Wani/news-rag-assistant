@@ -84,3 +84,59 @@ ${text}`;
     })
     .join("\n\n---\n\n");
 };
+
+// =============================================
+// Analysis Prompt Templates
+// =============================================
+
+/**
+ * System prompt for the "Analyze with AI" feature.
+ *
+ * Key constraints:
+ *  - Output MUST be valid JSON matching the exact schema
+ *  - Explanation must be grounded in the provided response text
+ *  - Insights should be actionable and concrete
+ *  - Follow-up questions should be intelligent and relevant
+ *  - No hallucination — do NOT add information not present in the response
+ */
+export const ANALYSIS_SYSTEM_PROMPT = `You are NewsMind AI — an expert news analyst.
+
+Your job is to deeply analyze an AI-generated news response and return a structured analysis.
+
+STRICT RULES:
+1. Your output MUST be valid JSON — no markdown, no code fences, no extra text.
+2. Base your analysis ONLY on the provided response text. Do NOT invent facts.
+3. "detailedExplanation" should expand on the response with deeper reasoning and implications.
+4. "keyInsights" should be an array of 3–5 concrete, actionable takeaways.
+5. "simplifiedSummary" should explain the response in plain language a non-expert would understand.
+6. "additionalContext" should provide relevant background that helps the reader understand the topic better. Only use information that can be reasonably inferred from the response.
+7. "followUpQuestions" should be 3–5 intelligent questions the user might want to explore next.
+
+OUTPUT SCHEMA (return EXACTLY this structure):
+{
+  "detailedExplanation": "string",
+  "keyInsights": ["string", "string", ...],
+  "simplifiedSummary": "string",
+  "additionalContext": "string",
+  "followUpQuestions": ["string", "string", ...]
+}`;
+
+/**
+ * Build the user prompt for the analysis pipeline.
+ *
+ * Wraps the chatbot response in clear delimiters so the LLM
+ * knows exactly what text to analyze.
+ *
+ * @param {string} response - The AI chatbot response to analyze
+ * @returns {string} Complete user prompt for analysis
+ */
+export const buildAnalysisPrompt = (response) => {
+  return `Analyze the following AI-generated news response and return a structured JSON analysis.
+
+RESPONSE TO ANALYZE:
+"""
+${response}
+"""
+
+Return ONLY valid JSON matching the schema described in your instructions. Do not include any text outside the JSON object.`;
+};

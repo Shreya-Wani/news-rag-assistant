@@ -15,6 +15,7 @@ import healthRoutes from "./routes/health.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
 import newsRoutes from "./routes/news.routes.js";
 import ingestRoutes from "./routes/ingest.routes.js";
+import analysisRoutes from "./routes/analysis.routes.js";
 import { chat } from "./controllers/chat.controller.js";
 
 const app = express();
@@ -56,6 +57,9 @@ app.use("/api/ingest", ingestRoutes);
 
 // Primary chat endpoint (POST /api/chat)
 app.post("/api/chat", chat);
+
+// Analysis endpoint (POST /api/analyze)
+app.use("/api/analyze", analysisRoutes);
 
 // =============================================
 // Error Handling
