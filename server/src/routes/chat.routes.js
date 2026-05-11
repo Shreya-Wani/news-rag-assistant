@@ -1,3 +1,12 @@
+/**
+ * Chat Routes
+ *
+ * POST /api/v1/chat/message          — Send message via legacy endpoint
+ * GET  /api/v1/chat/history/:sessionId — Get chat history
+ * POST /api/v1/chat/session           — Create new chat session
+ * DELETE /api/v1/chat/session/:sessionId — Delete chat session
+ */
+
 import { Router } from "express";
 import {
   sendMessage,
