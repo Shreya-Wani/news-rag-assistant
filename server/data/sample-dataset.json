@@ -1,0 +1,42 @@
+[
+  {
+    "title": "OpenAI Launches GPT-5 with Enhanced Reasoning Capabilities",
+    "content": "OpenAI has officially launched GPT-5, the latest iteration of its groundbreaking language model series. The new model features significantly improved reasoning capabilities, with the ability to solve complex multi-step problems that previous versions struggled with. In benchmark tests, GPT-5 demonstrated a 40% improvement in mathematical reasoning and a 35% improvement in logical deduction compared to GPT-4. The model also shows enhanced understanding of nuanced contexts and can maintain coherent conversations over much longer exchanges. OpenAI CEO Sam Altman described the launch as a milestone in artificial intelligence development, noting that GPT-5 represents a step closer to artificial general intelligence. The model is being rolled out gradually, starting with ChatGPT Plus subscribers and enterprise customers. Developers will gain API access within the coming weeks. Early users have reported that GPT-5 excels particularly in code generation, scientific analysis, and creative writing tasks.",
+    "source": "TechCrunch",
+    "url": "https://techcrunch.com/2025/openai-gpt5-launch",
+    "publishedAt": "2025-03-15T10:30:00Z",
+    "category": "technology"
+  },
+  {
+    "title": "Global Climate Summit Reaches Historic Agreement on Carbon Emissions",
+    "content": "World leaders at the Global Climate Summit in Geneva have reached a historic agreement to reduce carbon emissions by 60% before 2035. The agreement, signed by 195 nations, includes binding commitments for developed countries to transition to renewable energy sources and provide financial support to developing nations for green infrastructure. The deal also establishes a new international carbon trading system and creates a $500 billion climate adaptation fund. Environmental groups have largely praised the agreement, though some activists argue the targets do not go far enough. The United Nations Secretary-General called it the most significant climate agreement since the Paris Accords, noting that it addresses many of the shortcomings of previous deals. Implementation will begin immediately, with countries required to submit detailed action plans within six months. Key provisions include phasing out coal power by 2030, achieving net-zero shipping emissions by 2040, and halting deforestation in tropical regions.",
+    "source": "Reuters",
+    "url": "https://reuters.com/2025/climate-summit-agreement",
+    "publishedAt": "2025-04-20T14:00:00Z",
+    "category": "world"
+  },
+  {
+    "title": "SpaceX Successfully Lands First Crewed Mission on Mars",
+    "content": "SpaceX has achieved a historic milestone by successfully landing the first crewed mission on Mars. The Starship vehicle touched down on the Martian surface carrying a crew of six astronauts after a seven-month journey from Earth. The mission, named Ares I, marks humanity's first steps on another planet beyond the Moon. The crew will spend approximately 30 days on the Martian surface conducting scientific experiments, collecting soil samples, and testing equipment for future long-duration stays. SpaceX CEO Elon Musk watched the landing from mission control in Boca Chica, Texas, calling it the realization of a lifelong dream. NASA Administrator praised the achievement as a testament to public-private partnerships in space exploration. The mission is the culmination of years of testing and development, including numerous uncrewed test flights and orbital missions. The crew includes scientists, engineers, and a physician, all of whom underwent two years of intensive training for the mission.",
+    "source": "Space.com",
+    "url": "https://space.com/2025/spacex-mars-landing",
+    "publishedAt": "2025-05-01T08:00:00Z",
+    "category": "science"
+  },
+  {
+    "title": "Apple Unveils Revolutionary AR Glasses with Neural Interface",
+    "content": "Apple has unveiled its next-generation augmented reality glasses, Apple Vision Air, featuring a groundbreaking neural interface that allows users to control the device using thought-based commands. The lightweight glasses weigh just 85 grams and feature transparent holographic displays that overlay digital information onto the real world. The neural interface, developed in partnership with Neuralink, uses non-invasive sensors placed behind the ears to detect neural signals associated with specific intentions. During the keynote presentation, Apple CEO Tim Cook demonstrated how users can navigate menus, type messages, and interact with applications using only their thoughts. The device also supports traditional hand gesture and voice controls. Apple Vision Air is priced at $1,999 and will be available in select markets starting next quarter. Analysts predict the device could redefine personal computing, with potential applications in healthcare, education, manufacturing, and entertainment. The glasses run on a custom Apple R2 chip optimized for real-time AR processing and neural signal interpretation.",
+    "source": "The Verge",
+    "url": "https://theverge.com/2025/apple-vision-air",
+    "publishedAt": "2025-06-10T17:00:00Z",
+    "category": "technology"
+  },
+  {
+    "title": "World Health Organization Declares End of Global Pandemic",
+    "content": "The World Health Organization has officially declared the end of the global pandemic that has affected billions of people worldwide over the past several years. WHO Director-General made the announcement at a special press conference in Geneva, stating that global vaccination rates have reached 85% and new case numbers have fallen to pre-pandemic levels. The declaration comes after months of declining hospitalizations and deaths across all regions. Health experts attribute the success to unprecedented global cooperation in vaccine development and distribution, improved treatment protocols, and public health measures. However, the WHO cautioned that continued vigilance is necessary and urged countries to maintain their surveillance systems. The pandemic's impact on global health systems, economies, and societies will continue to be felt for years to come. Governments are now shifting focus to long-term recovery plans, including addressing mental health impacts, rebuilding healthcare infrastructure, and preparing for future health emergencies.",
+    "source": "BBC News",
+    "url": "https://bbc.com/2025/who-pandemic-end",
+    "publishedAt": "2025-07-22T12:00:00Z",
+    "category": "health"
+  }
+]
