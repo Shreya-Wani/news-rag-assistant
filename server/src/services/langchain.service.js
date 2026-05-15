@@ -7,7 +7,7 @@
  * grounded responses from retrieved context.
  */
 
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { ChatGroq } from "@langchain/groq";
 import { HumanMessage, SystemMessage } from "@langchain/core/messages";
 import { CONSTANTS } from "../config/constants.js";
 import { logger } from "../utils/logger.js";
@@ -26,19 +26,19 @@ let llmInstance = null;
  */
 export const getLLM = () => {
   if (!llmInstance) {
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error("GEMINI_API_KEY is not set in environment variables");
+    if (!process.env.GROQ_API_KEY) {
+      throw new Error("GROQ_API_KEY is not set in environment variables");
     }
 
-    llmInstance = new ChatGoogleGenerativeAI({
-      model: CONSTANTS.GEMINI_MODEL,
+    llmInstance = new ChatGroq({
+      modelName: CONSTANTS.GROQ_MODEL,
       temperature: CONSTANTS.TEMPERATURE,
-      maxOutputTokens: CONSTANTS.MAX_TOKENS,
-      apiKey: process.env.GEMINI_API_KEY,
+      maxTokens: CONSTANTS.MAX_TOKENS,
+      apiKey: process.env.GROQ_API_KEY,
     });
 
     logger.info(
-      `✅ Gemini LLM initialized (model=${CONSTANTS.GEMINI_MODEL}, temp=${CONSTANTS.TEMPERATURE})`
+      `✅ Groq LLM initialized (model=${CONSTANTS.GROQ_MODEL}, temp=${CONSTANTS.TEMPERATURE})`
     );
   }
 
@@ -59,7 +59,7 @@ export const generateResponse = async (systemPrompt, userPrompt) => {
   const llm = getLLM();
   const startTime = Date.now();
 
-  logger.debug("Sending prompt to Gemini...");
+  logger.debug("Sending prompt to Groq...");
 
   try {
     const response = await llm.invoke([
@@ -73,15 +73,15 @@ export const generateResponse = async (systemPrompt, userPrompt) => {
         ? response.content
         : String(response.content);
 
-    logger.info(`✅ Gemini responded in ${latencyMs}ms (${content.length} chars)`);
+    logger.info(`✅ Groq responded in ${latencyMs}ms (${content.length} chars)`);
 
     return { content, latencyMs };
   } catch (error) {
     const latencyMs = Date.now() - startTime;
 
-    // Handle Gemini API quota/rate limit errors gracefully
-    if (error.message?.includes("429") || error.message?.includes("quota") || error.message?.includes("RESOURCE_EXHAUSTED")) {
-      logger.warn(`⚠️ Gemini API quota exceeded after ${latencyMs}ms`);
+    // Handle Groq API quota/rate limit errors gracefully
+    if (error.message?.includes("429") || error.message?.includes("quota") || error.message?.includes("rate_limit")) {
+      logger.warn(`⚠️ Groq API quota exceeded after ${latencyMs}ms`);
       return {
         content: "I found relevant news articles, but the AI service is temporarily rate-limited. Please try again in a minute.",
         latencyMs,

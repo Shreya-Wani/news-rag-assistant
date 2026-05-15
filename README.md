@@ -14,13 +14,13 @@
 
 ## 📋 Overview
 
-**NewsMind AI** is a full-stack AI-powered news assistant that uses **Retrieval-Augmented Generation (RAG)** to answer user questions about current events. It ingests and indexes real news articles, stores them as vector embeddings in Pinecone, and uses Google Gemini LLM via LangChain to generate accurate, context-aware responses — with source citations from the original articles.
+**NewsMind AI** is a full-stack AI-powered news assistant that uses **Retrieval-Augmented Generation (RAG)** to answer user questions about current events. It ingests and indexes real news articles, stores them as vector embeddings in Pinecone, and uses Groq's high-speed LLMs via LangChain to generate accurate, context-aware responses — with source citations from the original articles.
 
 ### ✨ Key Features
 
 - 💬 **Conversational AI Chat** — Natural-language questions answered with source citations
 - 📰 **News Article Browser** — View all indexed articles in a clean dashboard
-- 🧠 **RAG Pipeline** — LangChain + HuggingFace embeddings + Pinecone vector search + Gemini LLM
+- 🧠 **RAG Pipeline** — LangChain + HuggingFace embeddings + Pinecone vector search + Groq LLM
 - 🔍 **Analyze with AI** — Deep-dive analysis on any AI response (insights, summary, follow-ups)
 - ⚡ **Fast Semantic Retrieval** — `sentence-transformers/all-MiniLM-L6-v2` embeddings, 384-dim
 - 🎨 **Minimalist Dark UI** — True-black design with Inter font and glassmorphism
@@ -35,7 +35,7 @@
 | Backend     | Node.js, Express.js, Nodemon                        |
 | Database    | MongoDB Atlas (Mongoose ODM)                        |
 | Embeddings  | HuggingFace Inference API (`all-MiniLM-L6-v2`)      |
-| LLM         | Google Gemini (`gemini-1.5-flash`) via LangChain JS |
+| LLM         | Groq (`llama3-8b-8192`) via LangChain JS            |
 | Vector DB   | Pinecone (Serverless)                               |
 | RAG Engine  | LangChain.js                                        |
 | Dev Tools   | Nodemon, ESLint                                     |
@@ -87,7 +87,7 @@ newsmind-ai/
 - **Node.js** v18+
 - **MongoDB Atlas** account (free tier works)
 - **Pinecone** account & API key
-- **Google AI Studio** (Gemini) API key
+- **Groq** API key
 - **HuggingFace** account & API token
 
 ### 1. Clone the Repository
@@ -136,7 +136,7 @@ Or open the app and use the built-in ingest button.
 | `NODE_ENV`             | `development` or `production`                    | —               |
 | `PORT`                 | Server port (default: `5000`)                    | —               |
 | `MONGODB_URI`          | MongoDB Atlas connection string                  | [MongoDB Atlas](https://cloud.mongodb.com) |
-| `GEMINI_API_KEY`       | Google Gemini API key                            | [Google AI Studio](https://aistudio.google.com) |
+| `GROQ_API_KEY`         | Groq API key                                     | [Groq Console](https://console.groq.com) |
 | `HUGGINGFACE_API_KEY`  | HuggingFace token (for embeddings)               | [HuggingFace Tokens](https://huggingface.co/settings/tokens) |
 | `PINECONE_API_KEY`     | Pinecone API key                                 | [Pinecone Console](https://app.pinecone.io) |
 | `PINECONE_INDEX`       | Pinecone index name (e.g. `newsmind-ai`)         | Create in Pinecone dashboard |
@@ -198,7 +198,7 @@ RAG Pipeline (LangChain.js)
     ├── 3. Build Prompt ──► promptTemplates.js
     │                        (Injects retrieved context)
     │
-    └── 4. Generate Answer ► Google Gemini (gemini-1.5-flash)
+    └── 4. Generate Answer ► Groq (llama3-8b-8192)
                               Returns answer + source citations
     │
     ▼
@@ -214,7 +214,7 @@ MongoDB Atlas
 2. **Embedding** — Each chunk is embedded using HuggingFace's `all-MiniLM-L6-v2` (384 dims)
 3. **Indexing** — Embeddings + metadata are upserted to Pinecone via `vectorStore.service.js`
 4. **Retrieval** — User query is embedded, then top-k chunks retrieved from Pinecone
-5. **Generation** — Retrieved chunks injected into a prompt template → Gemini generates the final answer
+5. **Generation** — Retrieved chunks injected into a prompt template → Groq generates the final answer
 
 ---
 
@@ -225,5 +225,5 @@ This project is licensed under the ISC License.
 ---
 
 <p align="center">
-  Built with ❤️ using <strong>MERN + LangChain + Gemini AI + Pinecone</strong>
+  Built with ❤️ using <strong>MERN + LangChain + Groq + Pinecone</strong>
 </p>

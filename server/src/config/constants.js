@@ -6,8 +6,8 @@
  */
 
 export const CONSTANTS = {
-  // ─── Gemini / LLM ──────────────────────────────────────────
-  GEMINI_MODEL: process.env.GEMINI_MODEL || "gemini-2.0-flash",
+  // ─── Groq / LLM ─────────────────────────────────────────────
+  GROQ_MODEL: process.env.GROQ_MODEL || "llama3-8b-8192",
   TEMPERATURE: parseFloat(process.env.LLM_TEMPERATURE) || 0.3,
   MAX_TOKENS: parseInt(process.env.MAX_TOKENS) || 2048,
 
