@@ -247,7 +247,7 @@ const ChatPage = () => {
               </div>
             </div>
           ) : (
-            <div style={{ display: "flex", flexDirection: "column", maxWidth: 768, margin: "0 auto", padding: "40px 24px 20px" }}>
+            <div style={{ display: "flex", flexDirection: "column", maxWidth: 768, margin: "0 auto", padding: "40px 24px 120px" }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
                 {messages.map((msg, idx) => (
                   <ChatMessage key={idx} message={msg} onAnalyze={handleAnalyze} />
