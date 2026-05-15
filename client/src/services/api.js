@@ -5,7 +5,7 @@ import axios from "axios";
  */
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "/api/v1",
-  timeout: 30000,
+  timeout: 120000, // 2 minutes — RAG pipeline (HuggingFace + Pinecone + Gemini) can be slow
   headers: {
     "Content-Type": "application/json",
   },
@@ -15,11 +15,6 @@ const api = axios.create({
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
-    // TODO: Add auth token if needed
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`;
-    // }
     return config;
   },
   (error) => {
@@ -33,12 +28,24 @@ api.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    // Timeout error
+    if (error.code === "ECONNABORTED") {
+      const msg = "Request timed out — the AI pipeline is taking too long. Please try again.";
+      console.error("[API Timeout]:", msg);
+      return Promise.reject({ message: msg, status: 408 });
+    }
+
+    // Network error (server down)
+    if (!error.response) {
+      const msg = "Cannot reach the server. Make sure the backend is running on port 5000.";
+      console.error("[API Network Error]:", msg);
+      return Promise.reject({ message: msg, status: 503 });
+    }
+
     const message =
       error.response?.data?.message || error.message || "Something went wrong";
 
-    // TODO: Handle specific error codes (401, 403, etc.)
     console.error("[API Error]:", message);
-
     return Promise.reject({ message, status: error.response?.status });
   }
 );

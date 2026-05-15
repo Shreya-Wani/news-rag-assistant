@@ -14,6 +14,15 @@ const chatService = {
   },
 
   /**
+   * Analyze an AI response
+   * @param {Object} payload - { response }
+   * @returns {Promise} Analysis response
+   */
+  analyzeResponse: (payload) => {
+    return api.post("/analyze", payload);
+  },
+
+  /**
    * Get chat history for a session
    * @param {string} sessionId
    * @returns {Promise} Chat history
@@ -37,6 +46,14 @@ const chatService = {
    */
   deleteSession: (sessionId) => {
     return api.delete(`/chat/session/${sessionId}`);
+  },
+
+  /**
+   * Get all active chat sessions
+   * @returns {Promise} List of sessions
+   */
+  getSessions: () => {
+    return api.get("/chat/sessions");
   },
 };
 

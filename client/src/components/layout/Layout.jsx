@@ -4,9 +4,10 @@ import Footer from "./Footer.jsx";
 
 const Layout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--color-bg-dark)]">
+    <div className="bg-grid" style={{ height: "100vh", display: "flex", flexDirection: "column", background: "var(--bg-primary)", overflow: "hidden", position: "relative" }}>
+      <div className="bg-glow" />
       <Navbar />
-      <main className="flex-1">
+      <main style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", position: "relative", zIndex: 1 }}>
         <Outlet />
       </main>
       <Footer />

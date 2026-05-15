@@ -1,5 +1,5 @@
 /**
- * Reusable Button component
+ * Button — design-system primitive
  */
 const Button = ({
   children,
@@ -9,27 +9,27 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  const baseClasses =
-    "inline-flex items-center justify-center gap-2 font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-[var(--color-bg-dark)] disabled:opacity-50 disabled:cursor-not-allowed";
+  const base =
+    "inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)] disabled:opacity-40 disabled:pointer-events-none select-none";
 
   const variants = {
     primary:
-      "bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 focus:ring-indigo-500",
+      "bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm",
     secondary:
-      "bg-[var(--color-bg-card)] border border-[var(--color-border)] text-[var(--color-text-primary)] hover:bg-[var(--color-bg-input)] focus:ring-[var(--color-border)]",
+      "bg-[var(--bg-secondary)] border border-[var(--border-primary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)]",
     ghost:
-      "text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-white/5 focus:ring-white/10",
+      "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]",
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm",
+    sm: "px-3 py-1.5 text-xs",
     md: "px-4 py-2 text-sm",
-    lg: "px-6 py-3 text-base",
+    lg: "px-6 py-2.5 text-sm",
   };
 
   return (
     <button
-      className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
+      className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={disabled}
       {...props}
     >
