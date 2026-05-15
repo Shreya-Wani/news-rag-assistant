@@ -1,53 +1,52 @@
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { HiOutlineExclamationTriangle } from "react-icons/hi2";
 
 /**
- * Axios instance with base configuration
+ * 404 Not Found Page
  */
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "/api/v1",
-  timeout: 120000, // 2 minutes — RAG pipeline (HuggingFace + Pinecone + Gemini) can be slow
-  headers: {
-    "Content-Type": "application/json",
-  },
-  withCredentials: true,
-});
+const NotFoundPage = () => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        gap: "1.5rem",
+        padding: "2rem",
+        textAlign: "center",
+      }}
+    >
+      <HiOutlineExclamationTriangle
+        style={{ fontSize: "4rem", color: "var(--color-text-tertiary, #888)" }}
+      />
+      <h1 style={{ fontSize: "3rem", fontWeight: 700, margin: 0 }}>404</h1>
+      <p
+        style={{
+          fontSize: "1.125rem",
+          color: "var(--color-text-secondary, #666)",
+          margin: 0,
+        }}
+      >
+        The page you're looking for doesn't exist.
+      </p>
+      <Link
+        to="/"
+        style={{
+          padding: "0.75rem 1.5rem",
+          borderRadius: "0.5rem",
+          background: "var(--color-primary, #6366f1)",
+          color: "#fff",
+          textDecoration: "none",
+          fontWeight: 500,
+          transition: "opacity 0.2s",
+        }}
+      >
+        Go Home
+      </Link>
+    </div>
+  );
+};
 
-// Request interceptor
-api.interceptors.request.use(
-  (config) => {
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response interceptor
-api.interceptors.response.use(
-  (response) => {
-    return response.data;
-  },
-  (error) => {
-    // Timeout error
-    if (error.code === "ECONNABORTED") {
-      const msg = "Request timed out — the AI pipeline is taking too long. Please try again.";
-      console.error("[API Timeout]:", msg);
-      return Promise.reject({ message: msg, status: 408 });
-    }
-
-    // Network error (server down)
-    if (!error.response) {
-      const msg = "Cannot reach the server. Make sure the backend is running on port 5000.";
-      console.error("[API Network Error]:", msg);
-      return Promise.reject({ message: msg, status: 503 });
-    }
-
-    const message =
-      error.response?.data?.message || error.message || "Something went wrong";
-
-    console.error("[API Error]:", message);
-    return Promise.reject({ message, status: error.response?.status });
-  }
-);
-
-export default api;
+export default NotFoundPage;
