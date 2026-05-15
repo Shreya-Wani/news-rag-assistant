@@ -74,7 +74,13 @@ export const processQuery = async (query, options = {}) => {
   );
 
   // ── 6. Format sources for the API response ───────────────────────
-  const sources = formatSources(formattedChunks);
+  let sources = formatSources(formattedChunks);
+
+  // If the LLM indicates the context was insufficient, wipe the sources
+  // so the UI doesn't display irrelevant articles.
+  if (answer.trim().includes("I could not find relevant information in the dataset")) {
+    sources = [];
+  }
 
   // ── 7. Compile latency metrics ───────────────────────────────────
   const totalMs = Date.now() - pipelineStart;

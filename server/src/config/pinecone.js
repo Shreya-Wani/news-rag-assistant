@@ -15,7 +15,6 @@ export const initPinecone = async () => {
       apiKey: process.env.PINECONE_API_KEY,
     });
 
-    logger.info("✅ Pinecone client initialized");
     return pineconeClient;
   } catch (error) {
     logger.error("❌ Pinecone initialization failed:", error.message);

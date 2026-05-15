@@ -53,13 +53,13 @@ app.use("/api", rateLimiter);
 app.use("/api/v1/health", healthRoutes);
 app.use("/api/v1/chat", chatRoutes);
 app.use("/api/v1/news", newsRoutes);
-app.use("/api/ingest", ingestRoutes);
+app.use("/api/v1/ingest", ingestRoutes);
 
 // Primary chat endpoint (POST /api/chat)
 app.post("/api/chat", chat);
 
-// Analysis endpoint (POST /api/analyze)
-app.use("/api/analyze", analysisRoutes);
+// Analysis endpoint (POST /api/v1/analyze)
+app.use("/api/v1/analyze", analysisRoutes);
 
 // =============================================
 // Error Handling

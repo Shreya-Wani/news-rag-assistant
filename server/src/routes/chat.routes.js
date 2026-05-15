@@ -13,6 +13,7 @@ import {
   getChatHistory,
   createSession,
   deleteSession,
+  getSessions
 } from "../controllers/chat.controller.js";
 import { validateRequest } from "../middlewares/validateRequest.js";
 
@@ -20,6 +21,7 @@ const router = Router();
 
 router.post("/message", validateRequest, sendMessage);
 router.get("/history/:sessionId", getChatHistory);
+router.get("/sessions", getSessions);
 router.post("/session", createSession);
 router.delete("/session/:sessionId", deleteSession);
 

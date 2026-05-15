@@ -21,6 +21,7 @@ import {
 } from "./dataset.service.js";
 import { CONSTANTS } from "../config/constants.js";
 import { logger } from "../utils/logger.js";
+import NewsArticle from "../models/newsArticle.model.js";
 
 /**
  * Generate a deterministic vector ID from article metadata.
@@ -185,6 +186,22 @@ export const ingestArticles = async (rawArticles, startTime = Date.now()) => {
       validationErrors,
       processingTimeMs: Date.now() - startTime,
     };
+  }
+
+  // --- 2.5 Save articles to MongoDB ---
+  try {
+    const bulkOps = validArticles.map((article) => ({
+      updateOne: {
+        filter: { url: article.url },
+        update: { $set: article },
+        upsert: true,
+      },
+    }));
+    
+    await NewsArticle.bulkWrite(bulkOps);
+    logger.info(`💾 Saved ${validArticles.length} articles to MongoDB`);
+  } catch (error) {
+    logger.error(`❌ Failed to save articles to MongoDB: ${error.message}`);
   }
 
   // 3. Process articles in batches to control concurrency
