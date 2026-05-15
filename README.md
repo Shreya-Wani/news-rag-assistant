@@ -35,7 +35,7 @@
 | Backend     | Node.js, Express.js, Nodemon                        |
 | Database    | MongoDB Atlas (Mongoose ODM)                        |
 | Embeddings  | HuggingFace Inference API (`all-MiniLM-L6-v2`)      |
-| LLM         | Groq (`llama3-8b-8192`) via LangChain JS            |
+| LLM         | Groq (`llama-3.1-8b-instant`) via LangChain JS            |
 | Vector DB   | Pinecone (Serverless)                               |
 | RAG Engine  | LangChain.js                                        |
 | Dev Tools   | Nodemon, ESLint                                     |
@@ -198,7 +198,7 @@ RAG Pipeline (LangChain.js)
     ├── 3. Build Prompt ──► promptTemplates.js
     │                        (Injects retrieved context)
     │
-    └── 4. Generate Answer ► Groq (llama3-8b-8192)
+    └── 4. Generate Answer ► Groq (llama-3.1-8b-instant)
                               Returns answer + source citations
     │
     ▼
