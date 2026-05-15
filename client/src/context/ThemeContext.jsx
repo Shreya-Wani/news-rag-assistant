@@ -5,7 +5,7 @@ const ThemeContext = createContext(null);
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const stored = localStorage.getItem("newsmind-theme");
-    return stored || "light";
+    return stored || "dark";
   });
 
   useEffect(() => {
