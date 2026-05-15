@@ -12,7 +12,7 @@ export const CONSTANTS = {
   MAX_TOKENS: parseInt(process.env.MAX_TOKENS) || 2048,
 
   // ─── Embeddings ─────────────────────────────────────────────
-  EMBEDDING_MODEL: process.env.EMBEDDING_MODEL || "BAAI/bge-small-en-v1.5",
+  EMBEDDING_MODEL: process.env.EMBEDDING_MODEL || "sentence-transformers/all-MiniLM-L6-v2",
 
   // ─── Chunking ───────────────────────────────────────────────
   CHUNK_SIZE: parseInt(process.env.CHUNK_SIZE) || 1000,
@@ -24,7 +24,7 @@ export const CONSTANTS = {
   PINECONE_TOP_K: parseInt(process.env.PINECONE_TOP_K) || 5,
 
   // ─── Retrieval ──────────────────────────────────────────────
-  SIMILARITY_THRESHOLD: parseFloat(process.env.SIMILARITY_THRESHOLD) || 0.7,
+  SIMILARITY_THRESHOLD: parseFloat(process.env.SIMILARITY_THRESHOLD) || 0.3,
   MAX_CONTEXT_CHARS: parseInt(process.env.MAX_CONTEXT_CHARS) || 8000,
 
   // ─── Ingestion ──────────────────────────────────────────────

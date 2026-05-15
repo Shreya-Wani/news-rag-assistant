@@ -61,18 +61,34 @@ export const generateResponse = async (systemPrompt, userPrompt) => {
 
   logger.debug("Sending prompt to Gemini...");
 
-  const response = await llm.invoke([
-    new SystemMessage(systemPrompt),
-    new HumanMessage(userPrompt),
-  ]);
+  try {
+    const response = await llm.invoke([
+      new SystemMessage(systemPrompt),
+      new HumanMessage(userPrompt),
+    ]);
 
-  const latencyMs = Date.now() - startTime;
-  const content =
-    typeof response.content === "string"
-      ? response.content
-      : String(response.content);
+    const latencyMs = Date.now() - startTime;
+    const content =
+      typeof response.content === "string"
+        ? response.content
+        : String(response.content);
 
-  logger.info(`✅ Gemini responded in ${latencyMs}ms (${content.length} chars)`);
+    logger.info(`✅ Gemini responded in ${latencyMs}ms (${content.length} chars)`);
 
-  return { content, latencyMs };
+    return { content, latencyMs };
+  } catch (error) {
+    const latencyMs = Date.now() - startTime;
+
+    // Handle Gemini API quota/rate limit errors gracefully
+    if (error.message?.includes("429") || error.message?.includes("quota") || error.message?.includes("RESOURCE_EXHAUSTED")) {
+      logger.warn(`⚠️ Gemini API quota exceeded after ${latencyMs}ms`);
+      return {
+        content: "I found relevant news articles, but the AI service is temporarily rate-limited. Please try again in a minute.",
+        latencyMs,
+      };
+    }
+
+    // Re-throw other errors
+    throw error;
+  }
 };
