@@ -2,6 +2,9 @@
 
 > AI-powered News RAG Chatbot — Ask questions about current events and get intelligent, source-backed answers.
 
+🌍 **Live Demo:** [https://news-rag-assistant.vercel.app/](https://news-rag-assistant.vercel.app/)  
+⚙️ **Backend API:** [https://news-rag-assistant.onrender.com](https://news-rag-assistant.onrender.com)
+
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![Stack](https://img.shields.io/badge/stack-MERN%20%2B%20GenAI-blueviolet)
 ![License](https://img.shields.io/badge/license-ISC-green)
@@ -90,8 +93,8 @@ newsmind-ai/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ShivamPatel145/Newsmind-AI.git
-cd Newsmind-AI
+git clone https://github.com/Shreya-Wani/news-rag-assistant.git
+cd news-rag-assistant
 ```
 
 ### 2. Setup Backend
