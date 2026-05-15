@@ -31,7 +31,7 @@ export const getLLM = () => {
     }
 
     llmInstance = new ChatGroq({
-      modelName: CONSTANTS.GROQ_MODEL,
+      model: CONSTANTS.GROQ_MODEL,
       temperature: CONSTANTS.TEMPERATURE,
       maxTokens: CONSTANTS.MAX_TOKENS,
       apiKey: process.env.GROQ_API_KEY,

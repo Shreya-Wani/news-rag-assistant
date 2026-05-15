@@ -7,7 +7,7 @@
 
 export const CONSTANTS = {
   // ─── Groq / LLM ─────────────────────────────────────────────
-  GROQ_MODEL: process.env.GROQ_MODEL || "llama3-8b-8192",
+  GROQ_MODEL: process.env.GROQ_MODEL || "llama-3.1-8b-instant",
   TEMPERATURE: parseFloat(process.env.LLM_TEMPERATURE) || 0.3,
   MAX_TOKENS: parseInt(process.env.MAX_TOKENS) || 2048,
 
