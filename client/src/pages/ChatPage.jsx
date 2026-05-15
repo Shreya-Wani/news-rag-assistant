@@ -189,7 +189,7 @@ const ChatPage = () => {
   const isEmpty = messages.length === 0;
 
   return (
-    <div style={{ display: "flex", height: "100%", background: "var(--bg-primary)" }}>
+    <div style={{ display: "flex", height: "100%", background: "var(--bg-primary)", overflow: "hidden" }}>
       {/* Sidebar */}
       <ChatSidebar 
         sessions={sessions}
@@ -200,9 +200,9 @@ const ChatPage = () => {
       />
 
       {/* Main Chat Area */}
-      <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative", minWidth: 0 }}>
+      <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative", minWidth: 0, overflow: "hidden", minHeight: 0 }}>
         
-        {/* Messages area */}
+        {/* Messages area - this is the ONLY scroll container */}
         <div style={{ flex: 1, overflowY: "auto", padding: "0" }}>
           {isEmpty ? (
             <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "0 24px" }} className="animate-fade-in">
@@ -276,13 +276,13 @@ const ChatPage = () => {
         </div>
 
         {/* Input bar */}
-        <div style={{ padding: "0 24px 24px", background: "var(--bg-primary)" }}>
+        <div style={{ padding: "8px 24px 16px", background: "var(--bg-primary)", flexShrink: 0, borderTop: "1px solid var(--border-primary)" }}>
           <div style={{ maxWidth: 768, margin: "0 auto" }}>
             <form
               onSubmit={handleSubmit}
               style={{
-                display: "flex", alignItems: "flex-end", gap: 12,
-                padding: "8px 8px 8px 16px", borderRadius: 24,
+                display: "flex", alignItems: "flex-end", gap: 8,
+                padding: "6px 6px 6px 14px", borderRadius: 20,
                 background: "var(--bg-secondary)",
                 border: "1px solid var(--border-secondary)",
                 transition: "border-color 0.2s, box-shadow 0.2s"
@@ -298,28 +298,28 @@ const ChatPage = () => {
                 rows={1}
                 style={{
                   flex: 1, background: "transparent", border: "none", outline: "none",
-                  resize: "none", fontSize: 15, color: "var(--text-primary)",
-                  padding: "8px 0", maxHeight: 200, fontFamily: "var(--font-sans)",
+                  resize: "none", fontSize: 13, color: "var(--text-primary)",
+                  padding: "6px 0", maxHeight: 160, fontFamily: "var(--font-sans)",
                   lineHeight: 1.5,
-                  minHeight: 24
+                  minHeight: 20
                 }}
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isLoading}
                 style={{
-                  width: 36, height: 36, borderRadius: "50%",
+                  width: 30, height: 30, borderRadius: "50%",
                   background: input.trim() && !isLoading ? "var(--text-primary)" : "var(--bg-tertiary)",
-                  color: input.trim() && !isLoading ? "var(--bg-primary)" : "var(--text-muted)", 
+                  color: input.trim() && !isLoading ? "var(--bg-primary)" : "var(--text-muted)",
                   border: "none", cursor: input.trim() && !isLoading ? "pointer" : "default",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   transition: "all 0.2s ease", flexShrink: 0
                 }}
               >
-                <HiOutlinePaperAirplane style={{ fontSize: 16 }} />
+                <HiOutlinePaperAirplane style={{ fontSize: 14 }} />
               </button>
             </form>
-            <p style={{ textAlign: "center", marginTop: 10, fontSize: 11, color: "var(--text-tertiary)" }}>
+            <p style={{ textAlign: "center", marginTop: 6, fontSize: 10, color: "var(--text-tertiary)" }}>
               NewsMind can make mistakes. Consider verifying important information.
             </p>
           </div>
