@@ -1,8 +1,8 @@
 /**
  * LangChain Service
- * Handles LLM interactions using LangChain + Google Gemini.
+ * Handles LLM interactions using LangChain + Groq.
  *
- * Provides a singleton Gemini chat model and a method to invoke it
+ * Provides a singleton Groq chat model and a method to invoke it
  * with system + user messages. Used by the RAG service to generate
  * grounded responses from retrieved context.
  */
@@ -16,7 +16,7 @@ import { logger } from "../utils/logger.js";
 let llmInstance = null;
 
 /**
- * Initialize or return the cached Gemini LLM.
+ * Initialize or return the cached Groq LLM.
  *
  * Lazy-loads on first call and reuses thereafter. The model is
  * configured with a low temperature for factual, deterministic
@@ -46,7 +46,7 @@ export const getLLM = () => {
 };
 
 /**
- * Generate a response from Gemini using system + user messages.
+ * Generate a response from Groq using system + user messages.
  *
  * This is a low-level method — the RAG service builds the prompt
  * and calls this function to get the LLM's output.

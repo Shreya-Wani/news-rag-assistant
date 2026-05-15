@@ -123,7 +123,7 @@ const HomePage = () => {
           {
             icon: HiOutlineChatBubbleLeftRight,
             title: "Contextual RAG",
-            desc: "Retrieval-Augmented Generation using Gemini ensures responses are synthesized perfectly from real context."
+            desc: "Retrieval-Augmented Generation using Groq ensures responses are synthesized perfectly from real context."
           },
           {
             icon: HiOutlineShieldCheck,
@@ -158,7 +158,7 @@ const HomePage = () => {
             { step: "01", title: "Ingestion", desc: "We constantly monitor global news sources and scrape full articles in real-time." },
             { step: "02", title: "Vectorization", desc: "Articles are chunked and converted into semantic embeddings using HuggingFace models." },
             { step: "03", title: "Retrieval", desc: "When you ask a question, we instantly retrieve the most relevant context from Pinecone." },
-            { step: "04", title: "Generation", desc: "Gemini AI synthesizes the context and generates a perfectly cited, hallucination-free response." }
+            { step: "04", title: "Generation", desc: "Groq AI synthesizes the context and generates a perfectly cited, hallucination-free response." }
           ].map((item, i) => (
              <div key={i} className="animate-slide-up" style={{ flex: "1 1 200px", maxWidth: 280, padding: 24, background: "var(--bg-secondary)", borderRadius: 16, border: "1px solid var(--border-primary)", textAlign: "left", animationDelay: `${0.2 + (i * 0.1)}s` }}>
                <div style={{ fontSize: 12, fontWeight: 700, color: "var(--accent)", marginBottom: 12, letterSpacing: "0.05em" }}>STEP {item.step}</div>

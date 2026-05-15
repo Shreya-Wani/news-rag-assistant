@@ -5,7 +5,7 @@ import axios from "axios";
  */
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "/api/v1",
-  timeout: 120000, // 2 minutes — RAG pipeline (HuggingFace + Pinecone + Gemini) can be slow
+  timeout: 120000, // 2 minutes — RAG pipeline (HuggingFace + Pinecone + Groq) can be slow
   headers: {
     "Content-Type": "application/json",
   },

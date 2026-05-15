@@ -2,7 +2,7 @@
  * Analysis Service
  * Orchestrates the "Analyze with AI" multi-step workflow:
  *
- *   Chatbot Response → Build Prompt → Gemini Generation → Parse JSON → Validate → Return
+ *   Chatbot Response → Build Prompt → Groq Generation → Parse JSON → Validate → Return
  *
  * This is the second-stage AI pipeline: after the RAG chatbot produces
  * a grounded response, the user can request a deeper analysis that
@@ -24,7 +24,7 @@ import { logger } from "../utils/logger.js";
  * Steps:
  *   1. Validate the input response
  *   2. Build the analysis prompt
- *   3. Send to Gemini with analysis-optimized settings
+ *   3. Send to Groq with analysis-optimized settings
  *   4. Parse the structured JSON output
  *   5. Retry on parse failure (up to ANALYSIS_MAX_RETRIES)
  *   6. Return validated analysis or fallback
@@ -51,7 +51,7 @@ export const analyzeResponse = async (response) => {
     try {
       logger.info(`📤 Analysis attempt ${attempt}/${maxRetries}...`);
 
-      // Call Gemini with the analysis prompt
+      // Call Groq with the analysis prompt
       const { content: rawContent, latencyMs } = await generateResponse(
         ANALYSIS_SYSTEM_PROMPT,
         userPrompt
@@ -60,7 +60,7 @@ export const analyzeResponse = async (response) => {
       generationMs += latencyMs;
 
       logger.debug(
-        `Raw Gemini output (${rawContent.length} chars, ${latencyMs}ms)`
+        `Raw Groq output (${rawContent.length} chars, ${latencyMs}ms)`
       );
 
       // ── Parse the structured JSON response ──────────────────

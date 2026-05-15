@@ -29,7 +29,7 @@ import { logger } from "../utils/logger.js";
  *   1. Retrieve relevant chunks from Pinecone
  *   2. Format chunks for the prompt context window
  *   3. Build grounded prompt (system + context + query)
- *   4. Send to Gemini and get response
+ *   4. Send to Groq and get response
  *   5. Format sources for the API response
  *   6. Track latency for each stage
  *
@@ -67,7 +67,7 @@ export const processQuery = async (query, options = {}) => {
   // ── 4. Build the grounded prompt ─────────────────────────────────
   const userPrompt = buildUserPrompt(query, contextString);
 
-  // ── 5. Generate response via Gemini ──────────────────────────────
+  // ── 5. Generate response via Groq ──────────────────────────────
   const { content: answer, latencyMs: generationMs } = await generateResponse(
     SYSTEM_PROMPT,
     userPrompt
